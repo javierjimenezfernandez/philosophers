@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 20:06:39 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/14 20:21:01 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:41:39 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ int	is_input_correct(int argc, char **argv)
 	while ((int)i < argc)
 	{
 		if (!ft_isalldigit(argv[i]))
-		{
-			/* call handler */
-			return (0);
-		}
+			return (wrong_usage());
 		if (i == number_of_philosophers)
 			range = MAX_THREADS;
 		else if (i >= time_to_die && i <= time_to_sleep)
@@ -52,10 +49,7 @@ int	is_input_correct(int argc, char **argv)
 		else if (i == number_of_times_each_philosopher_must_eat)
 			range = MAX_UNSIGNEDINT;
 		if (is_out_of_range(argv[i], range, i))
-		{
-			/* call handler */
-			return (0);
-		}
+			return (wrong_usage());
 		i++;
 	}
 	return (1);
@@ -76,9 +70,7 @@ t_init_cond	parse_input(int argc, char **argv)
 		init_cond.number_of_times_each_philosopher_must_eat = \
 			ft_atoi(argv[number_of_times_each_philosopher_must_eat]);
 		if (init_cond.number_of_times_each_philosopher_must_eat == 0)
-		{
-			/* end the program and log something */
-		}
+			init_times_must_eat_is_zero();
 	}
 	return (init_cond);
 }

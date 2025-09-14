@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:44:13 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/14 20:30:50 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:44:26 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	main(int argc, char **argv)
 		(void)init_cond;
 	}
 	else
-	{
-		/* wrong usage */
-	}
+		wrong_usage();
 	return (0);
 }
