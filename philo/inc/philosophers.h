@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:44:11 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/20 14:27:02 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:58:31 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int			ft_atoi(const char *str);
 char		*ft_uitoa(unsigned int n, char *str);
 
 /* error_handler.c */
-int			wrong_usage(void);
+void		log_fd(int fd, const char *log_info);
+void		wrong_usage(void);
 void		init_times_must_eat_is_zero(void);
 
 /* input_control.c */

@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 20:06:39 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/20 14:27:26 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:57:56 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_input_correct(int argc, char **argv)
 	while ((int)i < argc)
 	{
 		if (!ft_isalldigit(argv[i]))
-			return (wrong_usage());
+			return (wrong_usage(), 0);
 		if (i == number_of_philosophers)
 			ft_uitoa(MAX_THREADS, range);
 		else if (i >= time_to_die && i <= time_to_sleep)
@@ -49,7 +49,7 @@ int	is_input_correct(int argc, char **argv)
 		else if (i == number_of_times_each_philosopher_must_eat)
 			ft_uitoa(MAX_UNSIGNEDINT, range);
 		if (is_out_of_range(argv[i], range, i))
-			return (wrong_usage());
+			return (wrong_usage(), 0);
 		i++;
 	}
 	return (1);
