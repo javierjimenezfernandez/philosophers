@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/31 20:31:03 by javjimen          #+#    #+#              #
-#    Updated: 2025/09/20 14:05:59 by javjimen         ###   ########.fr        #
+#    Updated: 2025/09/20 21:36:34 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,10 @@ SRC_DIR		= src/
 SRC			= $(addprefix $(SRC_DIR), utils.c \
 									  ft_atoi.c \
 									  ft_uitoa.c \
+									  time_utils.c \
 									  error_handler.c \
 									  input_control.c \
+									  init.c \
 									  philosophers.c)
 
 

@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 20:54:00 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/20 18:57:26 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/20 20:46:20 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,19 @@ void	init_times_must_eat_is_zero(void)
 [number_of_times_each_philosopher_must_eat] argument undefined.\n");
 }
 
+void	destroy_all_mutexes(const char *log_info,
+			t_main_data_struct *main_data, pthread_mutex_t *forks)
+{
+	unsigned int	i;
+
+	log_fd(STDERR_FILENO, log_info);
+	pthread_mutex_destroy(&main_data->print_log_lock);
+	pthread_mutex_destroy(&main_data->time_to_die_lock);
+	pthread_mutex_destroy(&main_data->kill_philo_lock);
+	i = 0;
+	while (i < main_data->philo_array[0].n_of_philos)
+	{
+		pthread_mutex_destroy(&forks[i]);
+		i++;
+	}
+}
