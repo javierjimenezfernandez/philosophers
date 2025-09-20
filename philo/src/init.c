@@ -6,22 +6,26 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:17:32 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/20 20:52:46 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/28 19:34:25 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init_main_data_struct(t_main_data_struct *main_data, t_philo *philos)
+void	init_main_data_struct(
+			t_main_data_struct *main_data,
+			t_philo *philo_array)
 {
-	main_data->kill_philo_flag = 0;
+	main_data->dead_philo_flag = false;
 	pthread_mutex_init(&main_data->print_lock, NULL);
-	pthread_mutex_init(&main_data->time_to_die_lock, NULL);
-	pthread_mutex_init(&main_data->kill_philo_lock, NULL);
-	main_data->philo_array = philos;
+	pthread_mutex_init(&main_data->last_meal_lock, NULL);
+	pthread_mutex_init(&main_data->is_dead_lock, NULL);
+	main_data->philo_array = philo_array;
 }
 
-void	init_forks(pthread_mutex_t *fork_array, unsigned int num_of_philos)
+void	init_forks(
+			unsigned int num_of_philos,
+			pthread_mutex_t *fork_array)
 {
 	unsigned int	i;
 
@@ -33,7 +37,9 @@ void	init_forks(pthread_mutex_t *fork_array, unsigned int num_of_philos)
 	}
 }
 
-void	assign_forks(t_philo *philo_array, pthread_mutex_t *fork_array,
+void	assign_forks(
+			t_philo *philo_array,
+			pthread_mutex_t *fork_array,
 			unsigned int i)
 {
 	philo_array[i].l_fork = &fork_array[i];
@@ -43,8 +49,11 @@ void	assign_forks(t_philo *philo_array, pthread_mutex_t *fork_array,
 		philo_array[i].r_fork = &fork_array[i - 1];
 }
 
-void	init_philos(t_init_cond init_cond, t_philo *philo_array,
-			t_main_data_struct *main_data, pthread_mutex_t *fork_array)
+void	init_philos(
+			t_init_cond init_cond,
+			t_main_data_struct *main_data,
+			t_philo *philo_array,
+			pthread_mutex_t *fork_array)
 {
 	unsigned int	i;
 
@@ -61,12 +70,12 @@ void	init_philos(t_init_cond init_cond, t_philo *philo_array,
 		philo_array[i].init_timestamp = gettime_in_ms();
 		philo_array[i].last_meal = philo_array[i].init_timestamp;
 		philo_array[i].meals_eaten = 0;
-		philo_array[i].is_eating = 0;
-		philo_array[i].is_dead = &main_data->kill_philo_flag;
+		philo_array[i].is_eating = false;
+		philo_array[i].is_dead = &main_data->dead_philo_flag;
 		assign_forks(philo_array, fork_array, i);
 		philo_array[i].print_lock = &main_data->print_lock;
-		philo_array[i].time_to_die_lock = &main_data->time_to_die_lock;
-		philo_array[i].kill_philo_lock = &main_data->kill_philo_lock;
+		philo_array[i].last_meal_lock = &main_data->last_meal_lock;
+		philo_array[i].is_dead_lock = &main_data->is_dead_lock;
 		i++;
 	}
 }
