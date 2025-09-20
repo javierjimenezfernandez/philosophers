@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:44:11 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/14 21:41:32 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:27:02 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 # include <pthread.h>
 
 # ifndef MAX_THREADS
-#  define MAX_THREADS "200"
+#  define MAX_THREADS 200
 # endif /* MAX_THREADS */
 /* max for usleep = 1000000. source: man usleep */
-# define MAX_USECONDS "1000000"
-# define MAX_UNSIGNEDINT "4294967295"
+# define MAX_USECONDS 1000000
+# define MAX_UNSIGNEDINT 4294967295
+# define MAX_UINT_LENGHT 11
 
 typedef enum e_arguments
 {
@@ -51,7 +52,13 @@ size_t		ft_strlen(const char *s);
 int			ft_isdigit(const int c);
 int			ft_isalldigit(const char *str);
 int			ft_isspace(const int c);
+size_t		ft_uintlen(unsigned int n);
+
+/* ft_atoi.c */
 int			ft_atoi(const char *str);
+
+/* ft_uitoa.c */
+char		*ft_uitoa(unsigned int n, char *str);
 
 /* error_handler.c */
 int			wrong_usage(void);

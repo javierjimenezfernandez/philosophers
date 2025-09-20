@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 20:06:39 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/14 21:41:39 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:27:26 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	is_out_of_range(char *num, char *range, t_arguments argument)
 int	is_input_correct(int argc, char **argv)
 {
 	t_arguments	i;
-	char		*range;
+	char		range[MAX_UINT_LENGHT];
 
 	i = number_of_philosophers;
 	while ((int)i < argc)
@@ -43,11 +43,11 @@ int	is_input_correct(int argc, char **argv)
 		if (!ft_isalldigit(argv[i]))
 			return (wrong_usage());
 		if (i == number_of_philosophers)
-			range = MAX_THREADS;
+			ft_uitoa(MAX_THREADS, range);
 		else if (i >= time_to_die && i <= time_to_sleep)
-			range = MAX_USECONDS;
+			ft_uitoa(MAX_USECONDS, range);
 		else if (i == number_of_times_each_philosopher_must_eat)
-			range = MAX_UNSIGNEDINT;
+			ft_uitoa(MAX_UNSIGNEDINT, range);
 		if (is_out_of_range(argv[i], range, i))
 			return (wrong_usage());
 		i++;

@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 19:55:04 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/14 21:08:55 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:03:04 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,15 @@ int	ft_isspace(const int c)
 		|| c == '\r' || c == '\t' || c == '\v');
 }
 
-int	ft_atoi(const char *str)
+size_t	ft_uintlen(unsigned int n)
 {
-	int	i;
-	int	num;
-	int	neg;
+	size_t	len;
 
-	i = 0;
-	neg = 1;
-	num = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	len = 0;
+	while (n)
 	{
-		if (str[i] == '-')
-			neg = -1;
-		i++;
+		n /= 10;
+		len++;
 	}
-	while (ft_isdigit(str[i]))
-	{
-		num *= 10;
-		num += str[i] - '0';
-		i++;
-	}
-	return (neg * num);
+	return (len);
 }

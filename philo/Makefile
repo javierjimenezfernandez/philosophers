@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/31 20:31:03 by javjimen          #+#    #+#              #
-#    Updated: 2025/09/11 21:31:44 by javjimen         ###   ########.fr        #
+#    Updated: 2025/09/20 14:05:59 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ endif
 # List of source files
 SRC_DIR		= src/
 SRC			= $(addprefix $(SRC_DIR), utils.c \
+									  ft_atoi.c \
+									  ft_uitoa.c \
 									  error_handler.c \
 									  input_control.c \
 									  philosophers.c)
