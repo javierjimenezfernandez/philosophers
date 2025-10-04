@@ -6,17 +6,11 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 19:08:24 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/28 19:37:15 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:44:10 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-void	log_fd(int fd, const char *log_info)
-{
-	if (log_info)
-		write(fd, log_info, ft_strlen(log_info));
-}
 
 void	print_state(char *str, t_philo *philo)
 {
@@ -26,6 +20,16 @@ void	print_state(char *str, t_philo *philo)
 	timestamp = gettime_in_ms() - philo->init_timestamp;
 	if (!is_dead(philo))
 		printf("%ld %d %s\n", timestamp, philo->philo_id, str);
+	pthread_mutex_unlock(philo->print_lock);
+}
+
+void	print_died(t_philo *philo)
+{
+	time_t	timestamp;
+
+	pthread_mutex_lock(philo->print_lock);
+	timestamp = gettime_in_ms() - philo->init_timestamp;
+	printf("%ld %d %s\n", timestamp, philo->philo_id, DIED);
 	pthread_mutex_unlock(philo->print_lock);
 }
 

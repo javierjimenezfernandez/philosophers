@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 14:36:36 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/28 19:33:56 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:50:12 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ bool	philo_just_died(t_philo *philo_array)
 	{
 		if (is_time_to_die(&philo_array[i]))
 		{
-			print_state(DIED, &philo_array[i]);
 			pthread_mutex_lock(philo_array[i].is_dead_lock);
 			*philo_array[i].is_dead = true;
 			pthread_mutex_unlock(philo_array[i].is_dead_lock);
+			print_died(&philo_array[i]);
 			return (true);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:44:11 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/28 19:05:16 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:45:59 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,13 @@ time_t			gettime_in_ms(void);
 int				accurate_msleep(time_t ms);
 
 /* print_utils.c */
-void			log_fd(int fd, const char *log_info);
 void			print_state(char *str, t_philo *philo);
+void			print_died(t_philo *philo);
 void			print_philo(const t_philo *philo);
 void			print_all_philos(const t_philo *philo_array);
 
 /* error_handler.c */
+void			log_fd(int fd, const char *log_info);
 void			wrong_usage(void);
 void			init_times_must_eat_is_zero(void);
 void			destroy_all_mutexes(

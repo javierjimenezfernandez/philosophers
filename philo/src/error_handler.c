@@ -6,11 +6,17 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 20:54:00 by javjimen          #+#    #+#             */
-/*   Updated: 2025/09/27 20:10:05 by javjimen         ###   ########.fr       */
+/*   Updated: 2025/10/04 21:42:59 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	log_fd(int fd, const char *log_info)
+{
+	if (log_info)
+		write(fd, log_info, ft_strlen(log_info));
+}
 
 void	wrong_usage(void)
 {
